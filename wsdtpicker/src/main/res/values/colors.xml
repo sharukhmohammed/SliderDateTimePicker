@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--Primary Colors-->
+    <color name="primary_darkest">#0a4b3e</color>
+    <color name="primary_darker">#0f705d</color>
+    <color name="primary_dark">#14967c</color>
+    <color name="primary">#1abc9c</color>
+    <color name="primary_light">#47c9af</color>
+    <color name="primary_lighter">#75d6c3</color>
+    <color name="primary_lightest">#a3e4d7</color>
+
+    <!--Accents-->
+    <!-- <color name="accent_darkest">#663900</color>
+     <color name="accent_darker">#995500</color>
+     <color name="accent_dark">#cc7200</color>
+     <color name="accent">#FF8F00</color>
+     <color name="accent_light">#ffa532</color>
+     <color name="accent_lighter">#ffbb66</color>
+     <color name="accent_lightest">#ffd299</color>-->
+    <color name="accent">#1abc9c</color>
+    <!--Text Colors-->
+    <color name="text_primary">@color/primary</color>
+    <color name="text_dark">#333333</color>
+    <color name="text_heading">#636A6F</color>
+    <color name="text_sub_heading">#606770</color>
+    <color name="text_medium">#A2A2A2</color>
+    <color name="text_light">#FAFAFA</color>
+
+    <!--Transparent-->
+    <color name="transparent">#00000000</color>
+    <color name="transparent_white">#77FFFFFF</color>
+    <color name="transparent_black">#77000000</color>
+    <color name="transparent_primary">#771ABC9C</color>
+    <color name="transparent_accent">#77FF8F00</color>
+
+    <!--Status Colours-->
+    <color name="done_dark">#1976D2</color>
+    <color name="done">#42A5F5</color>
+    <color name="done_light">#BBDEFB</color>
+
+    <color name="success_dark">#388E3C</color>
+    <color name="success">#66BB6A</color>
+    <color name="success_light">#C8E6C9</color>
+
+    <color name="ongoing_dark">#FF6F00</color>
+    <color name="ongoing">#FFCA28</color>
+    <color name="ongoing_light">#FFECB3</color>
+
+    <color name="failure_dark">#d32f2f</color>
+    <color name="failure">#ef5350</color>
+    <color name="failure_light">#ffcdd2</color>
+
+    <color name="neutral_dark">#5D4037</color>
+    <color name="neutral">#8D6E63</color>
+    <color name="neutral_light">#D7CCC8</color>
+
+    <!--Backgrounds-->
+    <color name="separator_darker">#99000000</color>
+    <color name="separator_dark">#66000000</color>
+    <color name="separator">#22000000</color>
+    <color name="separator_light">#66FFFFFF</color>
+    <color name="separator_lighter">#99FFFFFF</color>
+    <color name="background">#FAFAFA</color>
+    <color name="disable">#FAFAFA</color>
+
+    <!--Grey scale -->
+    <color name="black">#FF000000</color>
+    <color name="grey_dark">#424242</color>
+    <color name="grey_medium">#6c6c6c</color>
+    <color name="grey">#BDBDBD</color>
+    <color name="grey_light">#F5F5F5</color>
+    <color name="white">#FFFFFF</color>
+
+</resources>

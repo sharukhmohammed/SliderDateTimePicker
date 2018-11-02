@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/frag_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="16dp"
+        android:textColor="@color/text_dark"
+        android:textSize="18sp"
+        tools:text="Select Date and Time" />
+
+    <devs.mulham.horizontalcalendar.HorizontalCalendarView
+        android:id="@+id/frag_date_picker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:background="@color/white"
+        app:colorBottomText="@color/text_dark"
+        app:colorMiddleText="@color/text_dark"
+        app:colorTopText="@color/text_dark"
+        app:selectedDateBackground="@drawable/gradient_primary"
+        app:selectorColor="@color/transparent"
+        app:stackFromEnd="true"
+        app:textColorSelected="#FFFF" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="48dp"
+        android:background="@color/separator" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/frag_time_picker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
+        android:orientation="horizontal"
+        app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_time" />
+
+
+    <Button
+        android:id="@+id/frag_done"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:background="@drawable/gradient_button"
+        android:text="Done"
+        android:textColor="@color/white" />
+
+</LinearLayout>
