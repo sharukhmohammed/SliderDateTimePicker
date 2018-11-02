@@ -116,7 +116,7 @@ public class WSDateTimePicker extends BottomSheetDialogFragment {
         });
 
         //Calling this for first time
-        date_picker.selectDate(startDate, true);
+        date_picker.selectDate(startDate, false);
 
 
         time_recycler.smoothScrollToPosition(Calendar.getInstance().get(Calendar.HOUR_OF_DAY));

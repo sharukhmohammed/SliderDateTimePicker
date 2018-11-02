@@ -15,6 +15,7 @@
         android:padding="16dp"
         android:textColor="@color/text_dark"
         android:textSize="18sp"
+        android:fontFamily="sans-serif-medium"
         tools:text="Select Date and Time" />
 
     <devs.mulham.horizontalcalendar.HorizontalCalendarView

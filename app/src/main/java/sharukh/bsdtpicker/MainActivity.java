@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                WSDateTimePicker wsdtPicker = WSDateTimePicker.newInstance("Selection Titel");
+                WSDateTimePicker wsdtPicker = WSDateTimePicker.newInstance("Selection Nishanth");
                 wsdtPicker.setOnDateTimeSetListener(new WSDateTimePicker.OnDateTimeSetListener() {
                     @Override
                     public void onDateTimeSelected(Calendar selectedDateTime) {
