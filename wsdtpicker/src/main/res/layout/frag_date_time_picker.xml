@@ -12,11 +12,69 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
+        android:fontFamily="sans-serif-medium"
         android:padding="16dp"
         android:textColor="@color/text_dark"
         android:textSize="18sp"
-        android:fontFamily="sans-serif-medium"
         tools:text="Select Date and Time" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:text="@string/pickup_time"
+                android:textColor="@color/text_medium" />
+
+            <TextView
+                android:id="@+id/frag_start_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:textColor="@color/text_primary"
+                android:text="--"
+                tools:text="Thursday, Nov 1, 6 PM" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:text="@string/drop_time"
+                android:textColor="@color/text_medium" />
+
+            <TextView
+                android:id="@+id/frag_end_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:textColor="@color/text_primary"
+                android:text="--"
+                tools:text="Sunday, Nov 4, 10 AM" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
 
     <devs.mulham.horizontalcalendar.HorizontalCalendarView
         android:id="@+id/frag_date_picker"

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">WSDTPicker</string>
+    <string name="pickup_time">Pickup Time</string>
+    <string name="drop_time">Drop Time</string>
 </resources>

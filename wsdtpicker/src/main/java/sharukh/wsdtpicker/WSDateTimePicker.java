@@ -1,22 +1,28 @@
 package sharukh.wsdtpicker;
 
-import android.app.Dialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.BottomSheetDialogFragment;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.LinearSmoothScroller;
 import android.support.v7.widget.LinearSnapHelper;
-import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
+import android.text.format.Time;
+import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 import devs.mulham.horizontalcalendar.HorizontalCalendar;
 import devs.mulham.horizontalcalendar.utils.HorizontalCalendarListener;
@@ -27,8 +33,13 @@ public class WSDateTimePicker extends BottomSheetDialogFragment {
      * */
     private static final String TAG = "BottomSlidingDateTime";
     private static final String INPUT_TITLE = "Title";
-    private Calendar selectedCal;
+    private Calendar setCal;
     private OnDateTimeSetListener dateTimeSetListener;
+    private Date startDate;
+    private SimpleDateFormat sdf = new SimpleDateFormat("EEEE, d MMM, h aa", Locale.ENGLISH);
+
+    private TextView start_time;
+    private TextView end_time;
 
     /* Public Usage Fields
      * */
@@ -49,6 +60,10 @@ public class WSDateTimePicker extends BottomSheetDialogFragment {
         }
     }
 
+    public void setStartDate(@Nullable Date startDate) {
+        this.startDate = startDate;
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -58,75 +73,91 @@ public class WSDateTimePicker extends BottomSheetDialogFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        /*Init Vars*/
         if (getArguments() != null) {
             fragTitle = getArguments().getString(INPUT_TITLE);
         }
 
-        final TextView selected_date_time = view.findViewById(R.id.frag_title);
-        selected_date_time.setText(fragTitle);
+        /*Init Views*/
+        //Set Title
+        TextView title = view.findViewById(R.id.frag_title);
+        title.setText(fragTitle);
 
-        selectedCal = Calendar.getInstance();
+        start_time = view.findViewById(R.id.frag_start_time);
+        end_time = view.findViewById(R.id.frag_end_time);
 
-        /* starts after 1 hour from now */
-        Calendar startDate = Calendar.getInstance();
-        startDate.add(Calendar.HOUR, 1);
-        startDate.set(Calendar.MINUTE, 0);
-        startDate.set(Calendar.SECOND, 0);
+        setCal = Calendar.getInstance();
+
+        /* If no startDate is provided, disable from this hour */
+        final Calendar disableBeforeCal = Calendar.getInstance();
+        disableBeforeCal.set(Calendar.MINUTE, 0);
+        disableBeforeCal.set(Calendar.SECOND, 0);
+        if (startDate == null) {
+            disableBeforeCal.add(Calendar.HOUR_OF_DAY, 1);
+        } else {
+            disableBeforeCal.setTime(startDate);
+        }
 
         /* ends after 2 years from now */
-        Calendar endDate = Calendar.getInstance();
-        endDate.add(Calendar.YEAR, 2);
-
-        HorizontalCalendar date_picker = new HorizontalCalendar.Builder(view, R.id.frag_date_picker)
-                .range(startDate, endDate)
-                .datesNumberOnScreen(5)
-                .build();
+        Calendar endCal = Calendar.getInstance();
+        endCal.add(Calendar.YEAR, 2);
 
 
-        final TimeAdapter adapter = new TimeAdapter(selectedCal.get(Calendar.HOUR_OF_DAY), new TimeAdapter.OnTimeSelectedListener() {
+        final TimeAdapter adapter = new TimeAdapter(disableBeforeCal.get(Calendar.HOUR_OF_DAY), new TimeAdapter.OnTimeSelectedListener() {
             @Override
             public void onTimeSelected(int hourOfTheDay) {
-                selectedCal.set(Calendar.HOUR_OF_DAY, hourOfTheDay);
+                setCal.set(Calendar.HOUR_OF_DAY, hourOfTheDay);
+                paintTimes();
             }
         });
 
         final RecyclerView time_recycler = view.findViewById(R.id.frag_time_picker);
+        time_recycler.setLayoutManager(new CenterLayoutManger(getContext(),LinearLayoutManager.HORIZONTAL,false));
         time_recycler.setAdapter(adapter);
 
         LinearSnapHelper snapHelper = new LinearSnapHelper();
         snapHelper.attachToRecyclerView(time_recycler);
 
+        //Scrolling to current time
+        time_recycler.smoothScrollToPosition(setCal.get(Calendar.HOUR_OF_DAY));
+
+        //Date Picker Init
+        HorizontalCalendar date_picker = new HorizontalCalendar.Builder(view, R.id.frag_date_picker)
+                .range(disableBeforeCal, endCal)
+                .datesNumberOnScreen(5)
+                .build();
+
         date_picker.setCalendarListener(new HorizontalCalendarListener() {
             @Override
             public void onDateSelected(Calendar date, int position) {
-                selectedCal = (Calendar) date.clone();
+                setCal.set(Calendar.DAY_OF_MONTH, date.get(Calendar.DAY_OF_MONTH));
+                setCal.set(Calendar.MONTH, date.get(Calendar.MONTH));
+                setCal.set(Calendar.YEAR, date.get(Calendar.YEAR));
+                setCal.set(Calendar.MINUTE, 0);
+                setCal.set(Calendar.SECOND, 0);
 
-                int today = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+                adapter.setDisableBefore(setCal);
 
-                if (selectedCal.get(Calendar.DAY_OF_MONTH) == today) {
-                    adapter.setDisableBefore(Calendar.getInstance().get(Calendar.HOUR_OF_DAY));
-                } else {
-                    adapter.setDisableBefore(-1);
-                }
+                time_recycler.smoothScrollToPosition(setCal.get(Calendar.HOUR_OF_DAY));
 
-                int hourOfDay = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
-                time_recycler.smoothScrollToPosition(hourOfDay);
+                paintTimes();
 
             }
         });
 
-        //Calling this for first time
-        date_picker.selectDate(startDate, false);
+        //Do these for the first time
+        date_picker.selectDate(disableBeforeCal, false);
+        adapter.setDisableBefore(setCal);
+        time_recycler.smoothScrollToPosition(setCal.get(Calendar.HOUR_OF_DAY));
 
-
-        time_recycler.smoothScrollToPosition(Calendar.getInstance().get(Calendar.HOUR_OF_DAY));
-
-
-        Button done_button = view.findViewById(R.id.frag_done);
-        done_button.setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.frag_done).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dateTimeSetListener.onDateTimeSelected(selectedCal);
+                if (dateTimeSetListener != null)
+                    dateTimeSetListener.onDateTimeSelected(setCal);
+                else
+                    Toast.makeText(getContext(), "dateTimeSetListener not implemented", Toast.LENGTH_SHORT).show();
                 dismissAllowingStateLoss();
             }
         });
@@ -134,15 +165,13 @@ public class WSDateTimePicker extends BottomSheetDialogFragment {
 
     }
 
-
-    private void initVars() {
-
+    private void paintTimes() {
+        if (startDate == null) {
+            start_time.setText(sdf.format(setCal.getTime()));
+        } else {
+            end_time.setText(sdf.format(setCal.getTime()));
+        }
     }
-
-    private void initViews() {
-
-    }
-
 
     public interface OnDateTimeSetListener {
         void onDateTimeSelected(Calendar selectedDateTime);

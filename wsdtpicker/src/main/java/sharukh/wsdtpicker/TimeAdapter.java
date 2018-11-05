@@ -14,6 +14,7 @@ import java.util.Calendar;
 
 class TimeAdapter extends RecyclerView.Adapter<TimeAdapter.Holder> {
 
+    public static final int DISABLE_NOTHING = -1;
     private final ArrayList<String> times = new ArrayList<String>() {{
         add("12 AM");
         add("1 AM");
@@ -27,7 +28,7 @@ class TimeAdapter extends RecyclerView.Adapter<TimeAdapter.Holder> {
         add("9 AM");
         add("10 AM");
         add("11 AM");
-        add("12 AM");
+        add("12 PM");
         add("1 PM");
         add("2 PM");
         add("3 PM");
@@ -56,8 +57,24 @@ class TimeAdapter extends RecyclerView.Adapter<TimeAdapter.Holder> {
         this.selectedPos = selectedPos;
     }
 
-    public void setDisableBefore(int disableBeforeHrs) {
-        this.disableBefore = disableBeforeHrs;
+    void setDisableBefore(Calendar setCal) {
+        int thisDay = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+        int thisMonth = Calendar.getInstance().get(Calendar.MONTH);
+        int thisYear = Calendar.getInstance().get(Calendar.YEAR);
+
+        int thisHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+
+        if (setCal.get(Calendar.DAY_OF_MONTH) == thisDay && setCal.get(Calendar.MONTH) == thisMonth && setCal.get(Calendar.YEAR) == thisYear) {
+            this.disableBefore = thisHour;
+            if (selectedPos < thisHour) {
+                setCal.set(Calendar.HOUR_OF_DAY, thisHour + 1);
+                this.selectedPos = thisHour + 1;
+            } else {
+                setCal.set(Calendar.HOUR_OF_DAY, selectedPos);
+            }
+        } else {
+            this.disableBefore = DISABLE_NOTHING;
+        }
         notifyDataSetChanged();
     }
 

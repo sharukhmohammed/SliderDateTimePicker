@@ -19,24 +19,21 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                WSDateTimePicker wsdtPicker = WSDateTimePicker.newInstance("Selection Nishanth");
+                WSDateTimePicker wsdtPicker = WSDateTimePicker.newInstance("Selection");
+                wsdtPicker.show(getSupportFragmentManager(), "MyWish");
                 wsdtPicker.setOnDateTimeSetListener(new WSDateTimePicker.OnDateTimeSetListener() {
                     @Override
                     public void onDateTimeSelected(Calendar selectedDateTime) {
-                        Snackbar.make(findViewById(android.R.id.content),selectedDateTime.getTime().toString(),Snackbar.LENGTH_LONG).show();
+                        Snackbar.make(findViewById(android.R.id.content), selectedDateTime.getTime().toString(), Snackbar.LENGTH_LONG).show();
                     }
                 });
-
-                wsdtPicker.show(getSupportFragmentManager(),"MyWish");
-
-                wsdtPicker.setCancelable(false);
             }
         });
     }
