@@ -26,14 +26,24 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                WSDateTimePicker wsdtPicker = WSDateTimePicker.newInstance("Selection");
-                wsdtPicker.show(getSupportFragmentManager(), "MyWish");
-                wsdtPicker.setOnDateTimeSetListener(new WSDateTimePicker.OnDateTimeSetListener() {
+                WSDateTimePicker startPicker = WSDateTimePicker.newInstance("Start Time");
+                startPicker.setOnDateTimeSetListener(new WSDateTimePicker.OnDateTimeSetListener() {
                     @Override
                     public void onDateTimeSelected(Calendar selectedDateTime) {
                         Snackbar.make(findViewById(android.R.id.content), selectedDateTime.getTime().toString(), Snackbar.LENGTH_LONG).show();
+
+                        WSDateTimePicker endPicker = WSDateTimePicker.newInstance("End Time");
+                        endPicker.setStartDate(selectedDateTime.getTime());
+                        endPicker.setOnDateTimeSetListener(new WSDateTimePicker.OnDateTimeSetListener() {
+                            @Override
+                            public void onDateTimeSelected(Calendar selectedDateTime) {
+                                Snackbar.make(findViewById(android.R.id.content), selectedDateTime.getTime().toString(), Snackbar.LENGTH_LONG).show();
+                            }
+                        });
+                        endPicker.show(getSupportFragmentManager(),"Your wish");
                     }
                 });
+                startPicker.show(getSupportFragmentManager(), "MyWish");
             }
         });
     }

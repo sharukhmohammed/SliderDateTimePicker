@@ -162,6 +162,7 @@ public class WSDateTimePicker extends BottomSheetDialogFragment {
             }
         });
 
+        paintTimes();
 
     }
 
@@ -169,6 +170,7 @@ public class WSDateTimePicker extends BottomSheetDialogFragment {
         if (startDate == null) {
             start_time.setText(sdf.format(setCal.getTime()));
         } else {
+            start_time.setText(sdf.format(startDate));
             end_time.setText(sdf.format(setCal.getTime()));
         }
     }
