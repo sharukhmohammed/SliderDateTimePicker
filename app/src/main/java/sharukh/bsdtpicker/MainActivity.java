@@ -11,7 +11,7 @@ import android.view.MenuItem;
 
 import java.util.Calendar;
 
-import sharukh.wsdtpicker.WSDateTimePicker;
+import sharukh.sliderdtpicker.SliderDateTimePicker;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,15 +26,15 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                WSDateTimePicker startPicker = WSDateTimePicker.newInstance("Start Time");
-                startPicker.setOnDateTimeSetListener(new WSDateTimePicker.OnDateTimeSetListener() {
+                SliderDateTimePicker startPicker = SliderDateTimePicker.newInstance("Start Time");
+                startPicker.setOnDateTimeSetListener(new SliderDateTimePicker.OnDateTimeSetListener() {
                     @Override
                     public void onDateTimeSelected(Calendar selectedDateTime) {
                         Snackbar.make(findViewById(android.R.id.content), selectedDateTime.getTime().toString(), Snackbar.LENGTH_LONG).show();
 
-                        WSDateTimePicker endPicker = WSDateTimePicker.newInstance("End Time");
+                        SliderDateTimePicker endPicker = SliderDateTimePicker.newInstance("End Time");
                         endPicker.setStartDate(selectedDateTime.getTime());
-                        endPicker.setOnDateTimeSetListener(new WSDateTimePicker.OnDateTimeSetListener() {
+                        endPicker.setOnDateTimeSetListener(new SliderDateTimePicker.OnDateTimeSetListener() {
                             @Override
                             public void onDateTimeSelected(Calendar selectedDateTime) {
                                 Snackbar.make(findViewById(android.R.id.content), selectedDateTime.getTime().toString(), Snackbar.LENGTH_LONG).show();

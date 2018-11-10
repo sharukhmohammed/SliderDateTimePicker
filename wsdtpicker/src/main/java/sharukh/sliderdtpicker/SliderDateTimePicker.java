@@ -1,21 +1,15 @@
-package sharukh.wsdtpicker;
+package sharukh.sliderdtpicker;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetDialogFragment;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.LinearSmoothScroller;
 import android.support.v7.widget.LinearSnapHelper;
 import android.support.v7.widget.RecyclerView;
-import android.text.format.Time;
-import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,7 +21,7 @@ import java.util.Locale;
 import devs.mulham.horizontalcalendar.HorizontalCalendar;
 import devs.mulham.horizontalcalendar.utils.HorizontalCalendarListener;
 
-public class WSDateTimePicker extends BottomSheetDialogFragment {
+public class SliderDateTimePicker extends BottomSheetDialogFragment {
 
     /* Private Fields
      * */
@@ -45,11 +39,11 @@ public class WSDateTimePicker extends BottomSheetDialogFragment {
      * */
     public static String fragTitle = "";
 
-    public static WSDateTimePicker newInstance(String title) {
+    public static SliderDateTimePicker newInstance(String title) {
 
         Bundle args = new Bundle();
         args.putString(INPUT_TITLE, title);
-        WSDateTimePicker fragment = new WSDateTimePicker();
+        SliderDateTimePicker fragment = new SliderDateTimePicker();
         fragment.setArguments(args);
         return fragment;
     }
@@ -148,7 +142,7 @@ public class WSDateTimePicker extends BottomSheetDialogFragment {
 
         //Do these for the first time
         date_picker.selectDate(disableBeforeCal, false);
-        adapter.setDisableBefore(setCal);
+        adapter.setDisableBefore(disableBeforeCal);
         time_recycler.smoothScrollToPosition(setCal.get(Calendar.HOUR_OF_DAY));
 
         view.findViewById(R.id.frag_done).setOnClickListener(new View.OnClickListener() {
