@@ -39,23 +39,25 @@ public class SliderDateTimePicker extends BottomSheetDialogFragment {
      * */
     public static String fragTitle = "";
 
-    public static SliderDateTimePicker newInstance(String title) {
+    public static SliderDateTimePicker newInstance() {
 
-        Bundle args = new Bundle();
-        args.putString(INPUT_TITLE, title);
+        //Bundle args = new Bundle();
+        //args.putString(INPUT_TITLE, title);
         SliderDateTimePicker fragment = new SliderDateTimePicker();
-        fragment.setArguments(args);
+        //fragment.setArguments(args);
         return fragment;
     }
 
-    public void setOnDateTimeSetListener(OnDateTimeSetListener onDateTimeSetListener) {
+    public SliderDateTimePicker setOnDateTimeSetListener(OnDateTimeSetListener onDateTimeSetListener) {
         if (onDateTimeSetListener != null) {
             this.dateTimeSetListener = onDateTimeSetListener;
         }
+        return this;
     }
 
-    public void setStartDate(@Nullable Date startDate) {
+    public SliderDateTimePicker setStartDate(@Nullable Date startDate) {
         this.startDate = startDate;
+        return this;
     }
 
     @Nullable
@@ -69,14 +71,14 @@ public class SliderDateTimePicker extends BottomSheetDialogFragment {
         super.onViewCreated(view, savedInstanceState);
 
         /*Init Vars*/
-        if (getArguments() != null) {
+        /*if (getArguments() != null) {
             fragTitle = getArguments().getString(INPUT_TITLE);
-        }
+        }*/
 
         /*Init Views*/
         //Set Title
-        TextView title = view.findViewById(R.id.frag_title);
-        title.setText(fragTitle);
+        /*TextView title = view.findViewById(R.id.frag_title);
+        title.setText(fragTitle);*/
 
         start_time = view.findViewById(R.id.frag_start_time);
         end_time = view.findViewById(R.id.frag_end_time);
@@ -90,10 +92,10 @@ public class SliderDateTimePicker extends BottomSheetDialogFragment {
         if (startDate != null) {
             disableBeforeCal.setTime(startDate);
             setCal.setTime(startDate);
-            setCal.add(Calendar.DAY_OF_MONTH, 2);
         }
         //Disabling from next hour from now or given startDate
         disableBeforeCal.add(Calendar.HOUR_OF_DAY, 1);
+        setCal.add(Calendar.HOUR_OF_DAY,1);
 
 
         /* ends after 2 years from now */
@@ -144,7 +146,7 @@ public class SliderDateTimePicker extends BottomSheetDialogFragment {
         });
 
         //Do these for the first time
-        date_picker.selectDate(disableBeforeCal, false);
+        date_picker.selectDate(setCal, false);
         adapter.setDisableBefore(disableBeforeCal,startDate);
         time_recycler.smoothScrollToPosition(setCal.get(Calendar.HOUR_OF_DAY));
 

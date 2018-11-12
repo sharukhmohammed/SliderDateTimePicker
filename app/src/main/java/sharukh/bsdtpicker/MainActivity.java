@@ -8,12 +8,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 import sharukh.sliderdtpicker.SliderDateTimePicker;
 
 public class MainActivity extends AppCompatActivity {
+    private SimpleDateFormat sdf = new SimpleDateFormat("d MMM, h aa", Locale.ENGLISH);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,28 +26,34 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        final TextView textView = findViewById(R.id.tutorial_text);
+
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SliderDateTimePicker startPicker = SliderDateTimePicker.newInstance("Start Time");
-                startPicker.setOnDateTimeSetListener(new SliderDateTimePicker.OnDateTimeSetListener() {
-                    @Override
-                    public void onDateTimeSelected(Calendar selectedDateTime) {
-                        Snackbar.make(findViewById(android.R.id.content), selectedDateTime.getTime().toString(), Snackbar.LENGTH_LONG).show();
 
-                        SliderDateTimePicker endPicker = SliderDateTimePicker.newInstance("End Time");
-                        endPicker.setStartDate(selectedDateTime.getTime());
-                        endPicker.setOnDateTimeSetListener(new SliderDateTimePicker.OnDateTimeSetListener() {
+
+                SliderDateTimePicker.newInstance()
+                        .setOnDateTimeSetListener((new SliderDateTimePicker.OnDateTimeSetListener() {
                             @Override
-                            public void onDateTimeSelected(Calendar selectedDateTime) {
-                                Snackbar.make(findViewById(android.R.id.content), selectedDateTime.getTime().toString(), Snackbar.LENGTH_LONG).show();
+                            public void onDateTimeSelected(final Calendar startTime) {
+
+                                SliderDateTimePicker.newInstance()
+                                        .setStartDate(startTime.getTime())
+                                        .setOnDateTimeSetListener(new SliderDateTimePicker.OnDateTimeSetListener() {
+                                            @Override
+                                            public void onDateTimeSelected(Calendar endTime) {
+
+                                                textView.setText(sdf.format(startTime.getTime()) + " ---to--- " + sdf.format(endTime.getTime()));
+
+                                            }
+                                        })
+                                        .show(getSupportFragmentManager(), "Your wish");
                             }
-                        });
-                        endPicker.show(getSupportFragmentManager(),"Your wish");
-                    }
-                });
-                startPicker.show(getSupportFragmentManager(), "MyWish");
+                        })).show(getSupportFragmentManager(), "Your wish");
+
+
             }
         });
     }
