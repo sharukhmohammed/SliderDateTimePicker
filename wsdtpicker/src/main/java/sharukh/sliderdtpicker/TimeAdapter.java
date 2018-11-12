@@ -2,6 +2,7 @@ package sharukh.sliderdtpicker;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 class TimeAdapter extends RecyclerView.Adapter<TimeAdapter.Holder> {
 
@@ -57,12 +59,19 @@ class TimeAdapter extends RecyclerView.Adapter<TimeAdapter.Holder> {
         this.selectedPos = selectedPos;
     }
 
-    void setDisableBefore(Calendar setCal) {
-        int thisDay = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
-        int thisMonth = Calendar.getInstance().get(Calendar.MONTH);
-        int thisYear = Calendar.getInstance().get(Calendar.YEAR);
+    void setDisableBefore(Calendar setCal, @Nullable Date startDate) {
 
-        int thisHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+        Calendar    disableBeforeCal = Calendar.getInstance();
+        if(startDate!=null)
+        {
+            disableBeforeCal.setTime(startDate);
+        }
+
+        int thisDay = disableBeforeCal.get(Calendar.DAY_OF_MONTH);
+        int thisMonth = disableBeforeCal.get(Calendar.MONTH);
+        int thisYear = disableBeforeCal.get(Calendar.YEAR);
+
+        int thisHour = disableBeforeCal.get(Calendar.HOUR_OF_DAY);
 
         if (setCal.get(Calendar.DAY_OF_MONTH) == thisDay && setCal.get(Calendar.MONTH) == thisMonth && setCal.get(Calendar.YEAR) == thisYear) {
             this.disableBefore = thisHour;

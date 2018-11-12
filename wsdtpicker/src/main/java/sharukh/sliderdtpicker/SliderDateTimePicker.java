@@ -87,11 +87,14 @@ public class SliderDateTimePicker extends BottomSheetDialogFragment {
         final Calendar disableBeforeCal = Calendar.getInstance();
         disableBeforeCal.set(Calendar.MINUTE, 0);
         disableBeforeCal.set(Calendar.SECOND, 0);
-        if (startDate == null) {
-            disableBeforeCal.add(Calendar.HOUR_OF_DAY, 1);
-        } else {
+        if (startDate != null) {
             disableBeforeCal.setTime(startDate);
+            setCal.setTime(startDate);
+            setCal.add(Calendar.DAY_OF_MONTH, 2);
         }
+        //Disabling from next hour from now or given startDate
+        disableBeforeCal.add(Calendar.HOUR_OF_DAY, 1);
+
 
         /* ends after 2 years from now */
         Calendar endCal = Calendar.getInstance();
@@ -107,7 +110,7 @@ public class SliderDateTimePicker extends BottomSheetDialogFragment {
         });
 
         final RecyclerView time_recycler = view.findViewById(R.id.frag_time_picker);
-        time_recycler.setLayoutManager(new CenterLayoutManger(getContext(),LinearLayoutManager.HORIZONTAL,false));
+        time_recycler.setLayoutManager(new CenterLayoutManger(getContext(), LinearLayoutManager.HORIZONTAL, false));
         time_recycler.setAdapter(adapter);
 
         LinearSnapHelper snapHelper = new LinearSnapHelper();
@@ -131,7 +134,7 @@ public class SliderDateTimePicker extends BottomSheetDialogFragment {
                 setCal.set(Calendar.MINUTE, 0);
                 setCal.set(Calendar.SECOND, 0);
 
-                adapter.setDisableBefore(setCal);
+                adapter.setDisableBefore(setCal,startDate);
 
                 time_recycler.smoothScrollToPosition(setCal.get(Calendar.HOUR_OF_DAY));
 
@@ -142,7 +145,7 @@ public class SliderDateTimePicker extends BottomSheetDialogFragment {
 
         //Do these for the first time
         date_picker.selectDate(disableBeforeCal, false);
-        adapter.setDisableBefore(disableBeforeCal);
+        adapter.setDisableBefore(disableBeforeCal,startDate);
         time_recycler.smoothScrollToPosition(setCal.get(Calendar.HOUR_OF_DAY));
 
         view.findViewById(R.id.frag_done).setOnClickListener(new View.OnClickListener() {
