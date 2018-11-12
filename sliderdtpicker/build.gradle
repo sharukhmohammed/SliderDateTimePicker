@@ -2,6 +2,8 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.jfrog.bintray'
 apply plugin: 'com.github.dcendents.android-maven'
 
+//Followed this tut https://android.jlelse.eu/publishing-your-android-kotlin-or-java-library-to-jcenter-from-android-studio-1b24977fe450
+//API KEY will be in local.properties (which is not synced to the repo)
 ext{
     bintrayRepo  = "SliderDTPicker"
     bintrayName = "sharukh.sliderdtpicker"
