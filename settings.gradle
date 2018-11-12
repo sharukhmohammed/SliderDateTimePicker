@@ -1,1 +1,1 @@
-include ':app', ':sliderdtpicker'
+include ':example', ':sliderdtpicker'
