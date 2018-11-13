@@ -7,14 +7,16 @@
     android:viewportHeight="100"
     tools:ignore="MissingDefaultResource">
 
-    <path
-        android:name="light_triangle"
-        android:fillColor="#00AABB"
-        android:pathData="M 100,0 L 0,100 100,100 z" />
 
     <path
         android:name="dark_triangle"
-        android:fillColor="#AA0000"
+        android:fillColor="#D84315"
         android:pathData="M 0,0 L 100,0 0,100 z" />
+
+    <path
+        android:name="light_triangle"
+        android:fillColor="#283593"
+        android:pathData="M 100,0 L 0,100 100,100 z" />
+
 
 </vector>

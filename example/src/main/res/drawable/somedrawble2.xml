@@ -9,12 +9,12 @@
 
     <path
         android:name="light_triangle"
-        android:fillColor="#880E4F"
+        android:fillColor="#6A1B9A"
         android:pathData="M 100,0 L 0,100 100,100 z" />
 
     <path
         android:name="dark_triangle"
-        android:fillColor="#01579B"
+        android:fillColor="#00838F"
         android:pathData="M 0,0 L 100,0 0,100 z" />
 
 
