@@ -12,7 +12,7 @@ ext{
 
     publishedGroupId = 'sharukh.sliderdtpicker'
     artifact = 'sliderdtpicker'
-    libraryVersion = '1.0.0'
+    libraryVersion = '1.1.0'
 
 
     libraryDescription = 'A Horizontally scrollable Date Time Picker Widget'
