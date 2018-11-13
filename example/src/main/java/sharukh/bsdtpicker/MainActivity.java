@@ -2,12 +2,12 @@ package sharukh.bsdtpicker;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
@@ -49,9 +49,17 @@ public class MainActivity extends AppCompatActivity {
 
                                             }
                                         })
+                                        .setStartLabel("Some Kinda Label")
+                                        .setEndLabel("Whatever")
+                                        .setTimeTextColor(ContextCompat.getColor(getApplicationContext(), R.color.ongoing_dark))
+                                        .setSelectedDateBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.somedrawble))
+                                        .setSelectedTimeBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.somedrawble2))
+                                        .setDoneButtonBackground(ContextCompat.getDrawable(getApplicationContext(), R.color.failure_dark))
                                         .show(getSupportFragmentManager(), "Your wish");
                             }
-                        })).show(getSupportFragmentManager(), "Your wish");
+                        }))
+                        .setStartLabel("Start Time")
+                        .show(getSupportFragmentManager(), "Your wish");
 
 
             }

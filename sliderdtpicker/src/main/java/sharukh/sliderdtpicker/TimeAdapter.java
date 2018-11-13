@@ -1,6 +1,7 @@
 package sharukh.sliderdtpicker;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
@@ -48,6 +49,7 @@ class TimeAdapter extends RecyclerView.Adapter<TimeAdapter.Holder> {
     private int disableBefore = -1;
     private OnTimeSelectedListener onTimeSelected;
     private Context context;
+    private Drawable selectedBackground;
 
     TimeAdapter(int selectedPos, OnTimeSelectedListener onTimeSelectedListener) {
 
@@ -61,9 +63,8 @@ class TimeAdapter extends RecyclerView.Adapter<TimeAdapter.Holder> {
 
     void setDisableBefore(Calendar setCal, @Nullable Date startDate) {
 
-        Calendar    disableBeforeCal = Calendar.getInstance();
-        if(startDate!=null)
-        {
+        Calendar disableBeforeCal = Calendar.getInstance();
+        if (startDate != null) {
             disableBeforeCal.setTime(startDate);
         }
 
@@ -87,11 +88,16 @@ class TimeAdapter extends RecyclerView.Adapter<TimeAdapter.Holder> {
         notifyDataSetChanged();
     }
 
+    void setSelectedBackground(Drawable selectedBackground) {
+        this.selectedBackground = selectedBackground;
+    }
 
     @NonNull
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         context = viewGroup.getContext();
+        if (selectedBackground == null)
+            selectedBackground = ContextCompat.getDrawable(context, R.drawable.gradient_primary);
         return new Holder(
                 LayoutInflater.from(viewGroup.getContext())
                         .inflate(R.layout.item_time, viewGroup, false)
@@ -104,7 +110,7 @@ class TimeAdapter extends RecyclerView.Adapter<TimeAdapter.Holder> {
 
         if (pos > disableBefore) {
             if (pos == selectedPos) {
-                holder.itemView.setBackground(ContextCompat.getDrawable(context, R.drawable.gradient_primary));
+                holder.itemView.setBackgroundDrawable(selectedBackground);
                 holder.timeText.setTextColor(ContextCompat.getColor(context, R.color.white));
             } else {
                 holder.itemView.setBackgroundColor(ContextCompat.getColor(context, R.color.white));
@@ -121,7 +127,7 @@ class TimeAdapter extends RecyclerView.Adapter<TimeAdapter.Holder> {
             });
         } else {
             holder.timeText.setTextColor(ContextCompat.getColor(context, R.color.text_medium));
-            holder.itemView.setBackground(ContextCompat.getDrawable(context, R.color.white));
+            holder.itemView.setBackgroundDrawable(ContextCompat.getDrawable(context, R.color.white));
             holder.itemView.setOnClickListener(null);
         }
     }
@@ -130,6 +136,7 @@ class TimeAdapter extends RecyclerView.Adapter<TimeAdapter.Holder> {
     public int getItemCount() {
         return times.size();
     }
+
 
     class Holder extends RecyclerView.ViewHolder {
         TextView timeText;

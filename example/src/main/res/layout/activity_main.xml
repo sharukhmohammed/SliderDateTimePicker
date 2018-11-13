@@ -26,8 +26,8 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <TextView
+            style="@style/TextAppearance.AppCompat.Body2"
             android:id="@+id/tutorial_text"
-            style="@style/TextAppearance.AppCompat.Display1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Hello World!"
