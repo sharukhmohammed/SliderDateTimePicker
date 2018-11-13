@@ -12,19 +12,19 @@ This is based off  [Horizontal-Calendar](https://github.com/Mulham-Raee/Horizont
 ## Installation
 Add this line in app level build.gradle file 
 ```gradle
-        implementation 'sharukh.sliderdtpicker:sliderdtpicker:latest-version'
+implementation 'sharukh.sliderdtpicker:sliderdtpicker:latest-version'
 ```
 ## Dependencies
 
 ```gradle
-        implementation 'com.android.support:appcompat-v7:28.0.0'
-        implementation 'com.android.support:design:28.0.0'
+implementation 'com.android.support:appcompat-v7:28.0.0'
+implementation 'com.android.support:design:28.0.0'
 ```
 ## Usage
 
 ```java
 
-  SliderDateTimePicker.newInstance()
+SliderDateTimePicker.newInstance()
                         .setOnDateTimeSetListener((new SliderDateTimePicker.OnDateTimeSetListener() {
                             @Override
                             public void onDateTimeSelected(final Calendar startTime) {
