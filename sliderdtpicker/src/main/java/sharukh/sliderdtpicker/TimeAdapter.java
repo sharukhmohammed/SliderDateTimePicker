@@ -122,6 +122,7 @@ class TimeAdapter extends RecyclerView.Adapter<TimeAdapter.Holder> {
         } else {
             holder.timeText.setTextColor(ContextCompat.getColor(context, R.color.text_medium));
             holder.itemView.setBackground(ContextCompat.getDrawable(context, R.color.white));
+            holder.itemView.setOnClickListener(null);
         }
     }
 
