@@ -31,10 +31,10 @@ public abstract class HorizontalCalendarBaseAdapter<VH extends DateViewHolder, T
     private final int cellWidth;
     private CalendarItemStyle disabledItemStyle;
 
-    protected Calendar startDate;
-    protected int itemsCount;
+    Calendar startDate;
+    int itemsCount;
 
-    protected HorizontalCalendarBaseAdapter(int itemResId, final HorizontalCalendar horizontalCalendar, Calendar startDate, Calendar endDate, HorizontalCalendarPredicate disablePredicate) {
+    HorizontalCalendarBaseAdapter(int itemResId, final HorizontalCalendar horizontalCalendar, Calendar startDate, Calendar endDate, HorizontalCalendarPredicate disablePredicate) {
         this.itemResId = itemResId;
         this.horizontalCalendar = horizontalCalendar;
         this.disablePredicate = disablePredicate;
@@ -77,7 +77,7 @@ public abstract class HorizontalCalendarBaseAdapter<VH extends DateViewHolder, T
     }
 
 
-    protected void applyStyle(VH viewHolder, Calendar date, int position) {
+    void applyStyle(VH viewHolder, Calendar date, int position) {
         int selectedItemPosition = horizontalCalendar.getSelectedDatePosition();
 
         if (disablePredicate != null) {
@@ -102,7 +102,7 @@ public abstract class HorizontalCalendarBaseAdapter<VH extends DateViewHolder, T
         }
     }
 
-    protected void applyStyle(VH viewHolder, CalendarItemStyle itemStyle) {
+    private void applyStyle(VH viewHolder, CalendarItemStyle itemStyle) {
         viewHolder.textTop.setTextColor(itemStyle.getColorTopText());
         viewHolder.textMiddle.setTextColor(itemStyle.getColorMiddleText());
         viewHolder.textBottom.setTextColor(itemStyle.getColorBottomText());
