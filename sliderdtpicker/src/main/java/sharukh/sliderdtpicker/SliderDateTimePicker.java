@@ -18,8 +18,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-import devs.mulham.horizontalcalendar.HorizontalCalendar;
-import devs.mulham.horizontalcalendar.utils.HorizontalCalendarListener;
+import sharukh.sliderdtpicker.utils.HorizontalCalendarListener;
+import sharukh.sliderdtpicker.utils.HorizontalSnapHelper;
+
 
 public class SliderDateTimePicker extends BottomSheetDialogFragment {
 
@@ -115,7 +116,7 @@ public class SliderDateTimePicker extends BottomSheetDialogFragment {
         time_recycler.setLayoutManager(new CenterLayoutManger(getContext(), LinearLayoutManager.HORIZONTAL, false));
         time_recycler.setAdapter(adapter);
 
-        LinearSnapHelper snapHelper = new LinearSnapHelper();
+        HorizontalSnapHelper snapHelper = new HorizontalSnapHelper();
         snapHelper.attachToRecyclerView(time_recycler);
 
         //Scrolling to current time

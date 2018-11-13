@@ -1,1 +1,1 @@
-include ':example', ':sliderdtpicker', ':horizontalcal'
+include ':example', ':sliderdtpicker'

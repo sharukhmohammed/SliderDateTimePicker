@@ -76,7 +76,7 @@
 
     </LinearLayout>
 
-    <devs.mulham.horizontalcalendar.HorizontalCalendarView
+    <sharukh.sliderdtpicker.HorizontalCalendarView
         android:id="@+id/frag_date_picker"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
