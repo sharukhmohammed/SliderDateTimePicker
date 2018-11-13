@@ -2,7 +2,7 @@
 Developed this Date Time Picker as the requirement for [Wheelstreet - Bike Rentals Android App](https://play.google.com/store/apps/details?id=in.wheelstreet)
 
  
-[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)   [![MinSdk: 14](https://img.shields.io/badge/minSdk-14-green.svg)](https://developer.android.com/about/versions/android-4.0)   [ ![Download](https://api.bintray.com/packages/sharukhmohammed/SliderDTPicker/sharukh.sliderdtpicker/images/download.svg) ](https://bintray.com/sharukhmohammed/SliderDTPicker/sharukh.sliderdtpicker/_latestVersion)  [![HitCount](http://hits.dwyl.com/sharukhmohammed/SliderDateTimePicker.svg)](http://hits.dwyl.com/sharukhmohammed/SliderDateTimePicker)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/sharukhmohammed/SliderDateTimePicker/issues)  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)   [![MinSdk: 14](https://img.shields.io/badge/minSdk-14-green.svg)](https://developer.android.com/about/versions/android-4.0)   [ ![Download](https://api.bintray.com/packages/sharukhmohammed/SliderDTPicker/sharukh.sliderdtpicker/images/download.svg) ](https://bintray.com/sharukhmohammed/SliderDTPicker/sharukh.sliderdtpicker/_latestVersion)  [![HitCount](http://hits.dwyl.com/sharukhmohammed/SliderDateTimePicker.svg)](http://hits.dwyl.com/sharukhmohammed/SliderDateTimePicker)
 
 
 ![](demo.gif)
