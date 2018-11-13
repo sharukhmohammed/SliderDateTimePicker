@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/BSDTPicker.iml" filepath="$PROJECT_DIR$/BSDTPicker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SliderDTPicker.iml" filepath="$PROJECT_DIR$/SliderDTPicker.iml" />
       <module fileurl="file://$PROJECT_DIR$/example/example.iml" filepath="$PROJECT_DIR$/example/example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/horizontalcal/horizontalcal.iml" filepath="$PROJECT_DIR$/horizontalcal/horizontalcal.iml" />
       <module fileurl="file://$PROJECT_DIR$/sliderdtpicker/sliderdtpicker.iml" filepath="$PROJECT_DIR$/sliderdtpicker/sliderdtpicker.iml" />
     </modules>
   </component>
